@@ -1,0 +1,10 @@
+NAME=qrencode
+VERSION=3.4.2
+URL=https://fukuchi.org/works/qrencode/
+LICENSE=GNU Lesser General Public License
+OWNER=Jonathan Kao
+SOURCE=oss/source/qrencode
+MTK_MODIFY= no
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=Libqrencode is a C library for encoding data in a QR Code symbol

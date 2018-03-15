@@ -1,0 +1,11 @@
+NAME=u-boot-2011.12
+VERSION=2011.12
+URL=http://www.denx.de
+LICENSE=GPLv2
+INSTALL_PATH=basic
+OWNER=jiaming.liu
+SOURCE=apollo/linux_core/uboot/u-boot-2011.12
+MTK_MODIFY=yes
+RELEASE_SOURCE=Yes
+USAGE=Static link
+COMMENT= the uboot will load the linux kerenl to dram,and jump to run .

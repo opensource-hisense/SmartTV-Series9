@@ -1,0 +1,10 @@
+NAME=wpa_supplicant
+VERSION=v0.8(wext)/v2.3(cfg80211)
+URL=https://w1.fi/wpa_supplicant/
+OWNER=donglin.wan
+SOURCE=apollo/oss/source/wpa_supplicant
+MTK_MODIFY=Yes
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=3rd

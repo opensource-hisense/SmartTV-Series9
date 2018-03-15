@@ -1,0 +1,10 @@
+NAME=wireless_tools
+VERSION=v29
+URL=http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/Tools.html
+LICENSE=GPLv2
+OWNER=quan.zhou
+SOURCE=oss/source/wireles_tools
+MTK_MODIFY=
+USAGE=Static Link
+INSTALL_PATH=
+COMMENT=Tool for debugging Wifi issues

@@ -1,0 +1,10 @@
+NAME=procmem
+VERSION=2.0
+URL=https://github.com/babuneelam/procmem_linux_x86_port
+LICENSE=Apple Public Source License
+OWNER=jiayang.li
+SOURCE=oss/source/procmem
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=/bin
+COMMENT= a tool ,memory analysis

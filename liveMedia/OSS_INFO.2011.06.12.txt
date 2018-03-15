@@ -1,0 +1,11 @@
+NAME=liveMedia
+VERSION=2011.06.12
+URL=http://www.live555.com
+LICENSE=LGPLv2.1
+OWNER=quan.zhou
+SOURCE=oss/source/liveMedia
+MTK_MODIFY=Yes
+USAGE=Dynamic Link
+COMMENT=c++ runtime library for RTSP requirement
+RELEASE_SOURCE=Yes
+INSTALL_PATH=lib

@@ -1,0 +1,11 @@
+NAME=libwebp
+VERSION=0.2.1
+URL=http://code.google.com/p/webp/
+LICENSE=webp.txt(BSD)
+OWNER=lei.dai
+SOURCE=oss/source/webp
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=libwebp: a library for brower, that can improve the performance of downloaing image
+webp.txt's directory:http://teams.mediatek.inc/dtv/SSD/SS3/Task%20Forces/Forms/AllItems.aspx?RootFolder=%2fdtv%2fSSD%2fSS3%2fTask%20Forces%2f3rd%20party%20list%2fLicense_Texts&FolderCTID=&View=%7b4DF37793-E07B-481C-BBFC-CD139C18D384%7d

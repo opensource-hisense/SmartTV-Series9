@@ -1,0 +1,10 @@
+NAME=python
+VERSION=2.7.9
+URL=http://www.python.org/
+LICENSE=
+OWNER=Lin Xu
+SOURCE=oss/source/python
+MTK_MODIFY=
+USAGE=an independent program
+INSTALL_PATH=/3rd
+COMMENT=

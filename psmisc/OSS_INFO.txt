@@ -1,0 +1,10 @@
+NAME=psmisc
+VERSION=22.13
+URL=http://psmisc.sourceforge.net/
+LICENSE=GPLv2
+OWNER=jingbo.kuang
+SOURCE=oss/source/prmisc
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=command for watch system process

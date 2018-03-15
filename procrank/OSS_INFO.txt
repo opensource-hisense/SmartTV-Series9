@@ -1,0 +1,10 @@
+NAME=procrank
+VERSION=2.0
+URL=https://github.com/csimmonds/procrank_linux
+LICENSE=Apple Public Source License
+OWNER=jiayang.li
+SOURCE=oss/source/procrank
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=/bin
+COMMENT= a tool ,memory analysis

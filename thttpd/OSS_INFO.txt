@@ -1,0 +1,10 @@
+NAME=thttpd
+VERSION=2.25b
+URL=http://acme.com/software/thttpd/
+LICENSE=BSD licenses variant
+OWNER=fs_wentianxian
+SOURCE=oss/source/thttpd
+MTK_MODIFY= No
+USAGE=Used as http server
+INSTALL_PATH=lib
+COMMENT=thttpd is a simple, small, portable, fast, and secure HTTP server.

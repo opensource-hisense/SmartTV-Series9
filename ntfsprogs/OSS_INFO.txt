@@ -1,0 +1,11 @@
+NAME=ntfsprogs
+VERSION=2.0.0
+URL=http://sourceforge.net/
+LICENSE=GPLv2
+OWNER=songwen.liao
+SOURCE=oss/source/ntfsprogs
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=basic

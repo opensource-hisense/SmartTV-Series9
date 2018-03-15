@@ -1,0 +1,10 @@
+NAME=rlog
+VERSION=1.4
+URL=http://www.arg0.net/rlog
+LICENSE=GPLv2.1
+OWNER=Xiaojun Zheng
+SOURCE=oss/source/rlog
+MTK_MODIFY= no
+USAGE=Dynamic Link
+INSTALL_PATH=basic
+COMMENT= mainly use for encfs

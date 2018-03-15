@@ -1,0 +1,30 @@
+#-----------------------------------------------------------------------------
+# Copyright (c) 2009, MediaTek Inc.
+# All rights reserved.
+#
+# Unauthorized use, practice, perform, copy, distribution, reproduction,
+# or disclosure of this information in whole or in part is prohibited.
+#-----------------------------------------------------------------------------
+# $RCSfile:  $
+# $Revision:
+# $Date:
+# $Author:  $
+# $CCRevision:  $
+# $SWAuthor:  $
+# $MD5HEX:  $
+#
+# Description:
+#        
+#---------------------------------------------------------------------------*/
+
+ifndef SQLITE_VERSION
+SQLITE_VERSION := 3.7.2
+endif
+
+.PHONY: all clean
+
+all:
+	cp $(SQLITE_VERSION)/lib/*.so $(OBJ_ROOT)/oss/basic/lib	
+
+clean:
+	make

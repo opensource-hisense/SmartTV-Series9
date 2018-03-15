@@ -1,0 +1,10 @@
+NAME=simple-mtpfs-simple-mtpfs
+VERSION=0.2
+URL=http://freecode.com/projects/simple-mtpfs
+LICENSE=GPL v2
+OWNER=songwen.liao
+SOURCE=oss/source/simple-mtpfs
+MTK_MODIFY=Yes
+USAGE=Android support mtpfs
+INSTALL_PATH=/system/bin
+COMMENT=openssh is secure shell protocol version.

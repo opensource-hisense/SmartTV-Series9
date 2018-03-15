@@ -1,0 +1,10 @@
+NAME=libogg
+VERSION=1.3.2
+URL=http:www.vorbis.com
+LICENSE=BSD
+OWNER=Shaoyong Duan
+SOURCE=oss/source/ogg
+MTK_MODIFY=No
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=libogg: a library for audiomixer, that can provide audio mixer

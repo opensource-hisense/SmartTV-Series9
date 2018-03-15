@@ -1,0 +1,10 @@
+NAME=ttxfont
+VERSION=1.0
+URL=http://linux.bytesex.org/xawtv/tvfonts/html Http://zapping.sourceforge.net/ZVBI/index.html
+LICENSE=GPLv2
+OWNER=jing.yin
+SOURCE=oss/source/ttxfont
+MTK_MODIFY=
+USAGE=Static Link
+INSTALL_PATH=basic
+COMMENT=ttx font -THE reference font for display teletext resource.

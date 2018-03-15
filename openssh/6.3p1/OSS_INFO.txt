@@ -1,0 +1,10 @@
+NAME=openssh
+VERSION=6.3p1
+URL=
+LICENSE=BSD 
+OWNER=jinke.mei
+SOURCE=oss/source/openssh
+MTK_MODIFY=No
+USAGE=Linux internal test
+INSTALL_PATH=/usr/local/bin
+COMMENT=openssh is secure shell protocol version.

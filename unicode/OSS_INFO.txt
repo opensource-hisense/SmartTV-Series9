@@ -1,0 +1,10 @@
+NAME=International Components for Unicode
+VERSION=3.2
+URL=http://www.icu-project.org
+LICENSE=BSD
+OWNER=jing.yin
+SOURCE=oss/source/unicode
+MTK_MODIFY=
+USAGE=static Link
+INSTALL_PATH=basic
+COMMENT=unicode -THE library for unicode converter.

@@ -1,0 +1,4 @@
+./configure --build=i686-linux-gnu --host=armv7a-mediatek482_001_neon-linux-gnueabi --prefix=./
+make
+make install
+

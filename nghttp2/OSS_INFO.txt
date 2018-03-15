@@ -1,0 +1,10 @@
+NAME=nghttp2
+VERSION=1.18.1
+URL=http://nghttp2.org
+LICENSE=MIT
+OWNER=Yujuan Qi
+SOURCE=oss/source/nghttp2
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=nghttp2 is an implementation of Hypertext Transfer Protocol version 2 in C.

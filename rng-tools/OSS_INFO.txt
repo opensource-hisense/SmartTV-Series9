@@ -1,0 +1,11 @@
+NAME=rng-tools
+VERSION=5
+URL=http://sourceforge.net/projects/gkernel/
+LICENSE=GPLv2
+OWNER=Chun Zhou
+SOURCE=oss/source/rng-tools
+RELEASE_SOURCE=YES
+MTK_MODIFY=NO
+USAGE=Program
+COMMENT=This is a random number generator daemon.
+INSTALL_PATH=/sbin/

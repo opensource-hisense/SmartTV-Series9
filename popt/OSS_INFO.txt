@@ -1,0 +1,11 @@
+NAME=popt
+VERSION=1.16
+URL=http://packages.debian.org/
+LICENSE=Red Hat Software
+OWNER=songwen.liao
+SOURCE=oss/source/popt
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=basic

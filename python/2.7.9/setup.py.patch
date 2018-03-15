@@ -1,0 +1,33 @@
+--- Python-2.7.9/setup.py	2014-12-11 00:00:01.000000000 +0800
++++ Python-2.7.9/setup2.py	2015-11-03 14:52:47.155483794 +0800
+@@ -87,7 +87,7 @@
+         if host_platform == 'darwin' and is_macosx_sdk_path(dir):
+             f = os.path.join(sysroot, dir[1:], filename)
+ 
+-        if os.path.exists(f): return []
++        if os.path.exists(f): return [dir]
+ 
+     # Check the additional directories
+     for dir in paths:
+@@ -118,10 +118,10 @@
+ 
+         if host_platform == 'darwin' and is_macosx_sdk_path(p):
+             if os.path.join(sysroot, p[1:]) == dirname:
+-                return [ ]
++                return [p]
+ 
+         if p == dirname:
+-            return [ ]
++            return [p]
+ 
+     # Otherwise, it must have been in one of the additional directories,
+     # so we have to figure out which one.
+@@ -811,7 +811,7 @@
+                                    include_dirs = ssl_incs,
+                                    library_dirs = ssl_libs,
+                                    libraries = ['ssl', 'crypto'],
+-                                   depends = ['socketmodule.h']), )
++                                   depends = ['socketmodule.h']) )
+         else:
+             missing.append('_ssl')
+ 

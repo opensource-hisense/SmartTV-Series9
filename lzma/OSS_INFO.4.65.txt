@@ -1,0 +1,10 @@
+NAME=lzma
+VERSION=4.65
+URL=http://www.7-zip.org/sdk.html
+LICENSE=Public demain
+OWNER=wangliang.wang
+SOURCE=project_x/target/mt53xx_com/mt53xx_com_driver/lzma
+MTK_MODIFY=yes
+USAGE=Static Link 
+COMMENT=Used in the compressed image to improve compression rate
+INSTALL_PATH=lib

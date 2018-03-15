@@ -1,0 +1,10 @@
+NAME=lighttpd
+VERSION=1.4.35
+URL=http://www.lighttpd.net/download/
+LICENSE=BSD
+OWNER=Weiqing Yin
+SOURCE=oss/source/lighttpd
+MTK_MODIFY=No
+USAGE=an independent program
+INSTALL_PATH=/3rd
+COMMENT=

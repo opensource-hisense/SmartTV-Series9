@@ -1,0 +1,11 @@
+NAME=sqlite3
+VERSION=3.7.2
+URL=http://www.sqlite.org/
+LICENSE=Public Domain
+OWNER=alice.chen
+SOURCE=oss/source/sqlite3
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=Implements a self-contained, serverless, zero-configuration, transactional SQL database engine 
+RELEASE_SOURCE=Yes
+INSTALL_PATH=3rd

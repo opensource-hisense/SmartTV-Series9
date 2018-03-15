@@ -1,0 +1,11 @@
+NAME=ncurses
+VERSION=5.7
+URL=http://www.gnu.org/software/ncurses/
+LICENSE=MIT
+OWNER=jingbo.kuang
+SOURCE=oss/source/ncurses
+MTK_MODIFY=No
+USAGE=Program
+INSTALL_PATH=openbox/bin
+COMMENT=Provide character terminal processing library.  See https://en.wikipedia.org/wiki/Ncurses  and  invisible-island.net/ncurses/ncurses.faq.html#is_it_gpl
+

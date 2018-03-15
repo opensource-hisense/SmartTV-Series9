@@ -1,0 +1,9 @@
+NAME=toybox
+VERSION=0.4.0
+URL=http://www.landley.net/toybox/downloads/toybox-0.4.0.tar.bz2
+LICENSE=GPLv2
+OWNER=robin.hsu
+SOURCE=oss/source/toybox
+MTK_MODIFY=
+USAGE=executable
+COMMENT=Used to replace the busybox
