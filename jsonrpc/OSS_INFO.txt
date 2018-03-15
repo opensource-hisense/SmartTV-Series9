@@ -1,0 +1,10 @@
+NAME=jsonrpc
+VERSION=Not specified
+URL=https://github.com/pijyoi/jsonrpc
+LICENSE=MIT
+OWNER=fs_wentianxian
+SOURCE=oss/source/jsonrpc
+MTK_MODIFY= No
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=jsonrpc implements the parsing and validation of the jsonrpc/2.0 request before handing it over to user-defined methods.

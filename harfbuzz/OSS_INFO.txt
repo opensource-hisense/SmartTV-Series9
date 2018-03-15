@@ -1,0 +1,10 @@
+NAME=libharfbuzz
+VERSION=1.4.2
+URL=http://harfbuzz.org/
+LICENSE=NOTICE.txt
+OWNER=Lei Dai
+SOURCE=oss/source/harfbuzz
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=libpng, a text shaping library.

@@ -1,0 +1,10 @@
+.PHONY: all clean
+
+all:
+	echo "Install jsonrpc library. OBJ_ROOT=$(OBJ_ROOT)"
+	cp ./lib/*.* $(OBJ_ROOT)/oss/basic/lib	
+
+clean:
+
+
+

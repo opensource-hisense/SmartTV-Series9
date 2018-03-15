@@ -1,0 +1,10 @@
+NAME=aacenc
+VERSION=3.3.3
+URL=Android JB source code
+LICENSE=FDK
+OWNER=david.li
+SOURCE=oss/source/aacenc
+MTK_MODIFY=Yes
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=Encoder AAC Bitstream

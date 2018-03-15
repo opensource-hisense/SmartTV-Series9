@@ -1,0 +1,9 @@
+NAME=linux-fusion
+VERSION=8.7.0
+LICENSE=GPLv2
+OWNER=chenli.zhang
+SOURCE=apollo/linux_core/driver/directfb_1.5.3/Kernel/linux-fusion
+MTK_MODIFY=yes
+USAGE=Static link
+INSTALL_PATH=basic
+COMMENT=GPLv2

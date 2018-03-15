@@ -1,0 +1,10 @@
+NAME=dibbler
+VERSION=0.8.0
+URL=http://klub.com.pl/dhcpv6/
+LICENSE=GPL2
+OWNER=yujuan.qi
+SOURCE=oss/source/dibbler
+MTK_MODIFY=
+USAGE=Binary
+INSTALL_PATH=bin
+COMMENT=dibbler is for implement dhcpv6 client.

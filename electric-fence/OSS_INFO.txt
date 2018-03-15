@@ -1,0 +1,9 @@
+NAME=electric-fence
+VERSION=2.1.13
+URL=http://perens.com/FreeSoftware/ElectricFence/electric-fence_2.1.13-0.1.tar.gz
+LICENSE=GPLv2
+OWNER=robin.hsu
+SOURCE=oss/source/electric-fence
+MTK_MODIFY=
+USAGE=Static linked
+COMMENT=Used for memory corruption detection

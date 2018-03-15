@@ -1,0 +1,10 @@
+NAME=encfs
+VERSION=1.3.2
+URL=http://www.arg0.net/encfs
+LICENSE=GPLv2
+OWNER=Xiaojun Zheng
+SOURCE=oss/source/encfs
+MTK_MODIFY= No
+USAGE=Dynamic Link
+INSTALL_PATH=basic
+COMMENT=use to encrypt file or dir.

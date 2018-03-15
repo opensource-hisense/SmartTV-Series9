@@ -1,0 +1,22 @@
+Index: encfs/encfs-1.3.2/encfs/Makefile.in
+===================================================================
+--- encfs-1.3.2.orig/encfs/Makefile.in	2013-02-04 11:34:20.641810000 +0530
++++ encfs-1.3.2/encfs/Makefile.in	2013-02-04 11:34:42.443385000 +0530
+@@ -112,7 +112,7 @@
+ 	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
+ 	$(AM_CXXFLAGS) $(CXXFLAGS)
+ CXXLD = $(CXX)
+-CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) $(AM_CXXFLAGS) \
++CXXLINK = $(LIBTOOL) --tag=CXX --mode=link $(CXXLD) -XCClinker -EL  $(AM_CXXFLAGS) \
+ 	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+ SOURCES = $(libencfs_la_SOURCES) $(encfs_SOURCES) $(encfsctl_SOURCES) \
+ 	$(test_SOURCES)
+@@ -288,7 +288,7 @@
+ #       :     :   0       => no new interfaces, but breaks old apps
+ #       :  +1 :           => internal changes, nothing breaks
+ #
+-libencfs_la_LDFLAGS = -version-info 2:1:1
++libencfs_la_LDFLAGS = -XCClinker -EL -version-info 2:1:1
+ libencfs_la_LIBADD = -lrlog
+ EXTRASRC = ../intl/autosprintf.cpp $(am__append_3) $(am__append_4)
+ libencfs_la_SOURCES = \

@@ -1,0 +1,37 @@
+Build Steps:
+
+1. For CA9 IC
+
+tar -jxvf alsa-lib-1.0.24.1.daniel.tar.bz2
+tar -jxvf alsa-utils-1.0.24.2.daniel.tar.bz2
+make BUILD_CFG=rel TOOL_CHAIN=4.5.1 ENABLE_CA9=true all
+make BUILD_CFG=rel TOOL_CHAIN=4.5.1 ENABLE_CA9=true util
+
+After the upper operations, you can have the new library in
+
+  vm_linux/oss/library/gnuarm-4.5.1_vfp_ca9/alsa/1.0.24.1/
+
+and the utils in
+
+  vm_linux/oss/source/alsa/1.0.24.1/output/bin/
+
+2. For ARM11 IC
+
+tar -jxvf alsa-lib-1.0.24.1.daniel.tar.bz2
+tar -jxvf alsa-utils-1.0.24.2.daniel.tar.bz2
+make BUILD_CFG=rel TOOL_CHAIN=4.5.1 ENABLE_CA9=false all
+make BUILD_CFG=rel TOOL_CHAIN=4.5.1 ENABLE_CA9=false util
+
+After the upper operations, you can have the new library in
+
+  vm_linux/oss/library/gnuarm-4.5.1/alsa/1.0.24.1/
+
+and the utils in
+
+  vm_linux/oss/source/alsa/1.0.24.1/output/bin/
+
+3. If you want to make sure the alsa-lib correctly installed in your platform,
+please modify the vm_linux/dtv_linux/mak/oss_policy.mak directly.
+
+  OSS_LIST += alsa
+

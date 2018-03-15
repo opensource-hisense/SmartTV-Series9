@@ -1,0 +1,10 @@
+NAME=Appweb
+VERSION=4.3.5
+URL=http://www.appwebserver.org/
+LICENSE=GPLv2
+OWNER=weiqing.yin
+SOURCE=oss/source/appweb
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=basic
+COMMENT=

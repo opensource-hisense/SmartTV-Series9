@@ -1,0 +1,10 @@
+NAME=uDirectFB
+VERSION=1.5.3
+URL=http://www.directfb.org
+LICENSE=LGPLv2
+OWNER=chenli.zhang
+SOURCE=apollo/linux_core/driver/directfb/directfb_1.5.3/Source/DirectFB
+MTK_MODIFY=yes
+USAGE=Static link
+INSTALL_PATH=lib
+COMMENT=LGPLv2

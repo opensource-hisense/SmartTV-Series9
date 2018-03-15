@@ -1,0 +1,11 @@
+NAME=libusb
+VERSION=1.0.8
+URL=http://libusb.sourceforge.net/
+LICENSE=LGPLv2.1
+OWNER=songwen.liao
+SOURCE=oss/source/libusb
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=basic

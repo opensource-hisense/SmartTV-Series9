@@ -1,0 +1,11 @@
+NAME=cJSON
+VERSION=
+URL=http://sourcegorge.net/projects/cjson
+LICENSE=MIT 
+OWNER=Weiqing Yin
+SOURCE=oss/source/cJSON
+MTK_MODIFY=
+USAGE=Dynamic Link
+INSTALL_PATH=basic
+COMMENT=
+

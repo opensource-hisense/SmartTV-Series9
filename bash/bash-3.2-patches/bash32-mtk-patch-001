@@ -1,0 +1,25 @@
+diff -urN a/bash-3.2.48/shell.c b/bash-3.2.48/shell.c
+--- a/bash-3.2.48/shell.c	2016-06-10 07:56:59.248227868 +0800
++++ b/bash-3.2.48/shell.c	2016-06-10 07:56:23.404495617 +0800
+@@ -511,8 +511,19 @@
+    */
+   if (login_shell && interactive_shell)
+     {
+-      for (i = 3; i < 20; i++)
+-	close (i);
++      /* do not close property fd for Eureka so getprop can work */
++      int propertyfd = 0;
++      char *propertyenv = getenv("ANDROID_PROPERTY_WORKSPACE");
++      if (propertyenv) {
++          propertyfd = atoi(propertyenv);
++      }
++
++      for (i = 3; i < 20; i++) {
++          if (i == propertyfd) {
++            continue;
++        }
++    	close (i);
++      }
+     }
+ #endif /* CLOSE_FDS_AT_LOGIN */
+ 

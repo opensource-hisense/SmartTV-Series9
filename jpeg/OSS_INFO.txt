@@ -1,0 +1,10 @@
+NAME=libjpeg
+VERSION=6b
+URL=http://www.ijg.org/
+LICENSE=libjpeg.txt
+OWNER=elvis.wang
+SOURCE=oss/source/jpeg
+MTK_MODIFY=No
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=The 'libjpeg' library used for jpeg image decode.

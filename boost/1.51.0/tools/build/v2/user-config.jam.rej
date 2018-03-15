@@ -1,0 +1,10 @@
+--- tools/build/v2/user-config.jam	2011-01-25 23:36:12.000000000 +0530
++++ tools/build/v2/user-config.jam	2012-09-12 19:31:59.000000000 +0530
+@@ -44,6 +44,7 @@
+ # Configure specific gcc version, giving alternative name to use.
+ # using gcc : 3.2 : g++-3.2 ;
+ 
++using gcc : mips : mips-linux-gnu-g++ ;
+ 
+ # -------------------
+ # MSVC configuration.

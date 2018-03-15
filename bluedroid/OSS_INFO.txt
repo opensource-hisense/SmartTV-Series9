@@ -1,0 +1,10 @@
+NAME=BLUEDROID
+VERSION=1.0
+URL=https://android.googlesource.com/platform/system/bt
+LICENSE=Apache 2.0
+OWNER=xuemei.yang
+SOURCE=oss/source/bluedroid
+MTK_MODIFY=
+USAGE=Dynamic Link
+COMMENT=BT Stack
+INSTALL_PATH=lib

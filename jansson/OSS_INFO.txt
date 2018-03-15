@@ -1,0 +1,10 @@
+NAME=jansson
+VERSION=2.4
+URL=http://www.digip.org/jansson/
+LICENSE=MIT
+OWNER=fs_wentianxian
+SOURCE=oss/source/jansson
+MTK_MODIFY= No
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=C library for encoding, decoding and manipulating JSON data

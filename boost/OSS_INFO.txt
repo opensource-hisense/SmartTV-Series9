@@ -1,0 +1,10 @@
+NAME=boost
+VERSION=1.15.0
+URL=http://www.boost.org/
+LICENSE=Boost Software License - Version 1.0 - August 17th, 2003
+OWNER=Xiaojun Zheng
+SOURCE=oss/source/boost
+MTK_MODIFY=no
+USAGE=Dynamic Link
+INSTALL_PATH=basic
+COMMENT= mainly use for encfs

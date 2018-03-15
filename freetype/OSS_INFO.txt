@@ -1,0 +1,11 @@
+NAME=freetype
+VERSION=2.3.7 or 2.4.3
+URL=http://freetype.sourceforge.net
+LICENSE=BSD
+OWNER=jing.yin
+SOURCE=oss/source/freetype
+MTK_MODIFY=Yes
+USAGE=Dynamic Link
+INSTALL_PATH=lib
+COMMENT=FreeType 2 is a software font engine that is designed to be small, efficient, highly customizable, and portable while capable of producing high-quality output (glyph images). 
+

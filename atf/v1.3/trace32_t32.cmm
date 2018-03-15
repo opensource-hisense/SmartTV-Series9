@@ -1,0 +1,143 @@
+&NR_CPUS=4
+&DRAM=0
+SYSTEM.JtagClock 1MHz
+SYSTEM.CONFIG CORENUMBER &NR_CPUS
+;DEBUG.ReferenceVoltage V35 
+;DEBUG.ReferenceVoltage V33 
+;sys.down
+
+;SYStem.CPU CA57A53
+
+if &NR_CPUS==1
+(
+    ; CPU type
+    sys.cpu cortexA53
+
+    ;R-T Memory Access
+    SYSTEM.MULTICORE MEMORYACCESSPORT 0
+    SYSTEM.MULTICORE DEBUGACCESSPORT 1
+
+    ;Setting Core debug register access
+    SYSTEM.CONFIG COREBASE 0x80810000;
+    SYStem.CONFIG CTIBASE 0x80820000;
+)
+else if &NR_CPUS==2
+(
+    ; CPU type
+    sys.cpu cortexA53
+    SYSTEM.CONFIG CORENUMBER 2;
+
+    ;R-T Memory Access
+    SYSTEM.MULTICORE MEMORYACCESSPORT 0
+    SYSTEM.MULTICORE DEBUGACCESSPORT 1
+
+    ;Setting Core debug register access
+    SYSTEM.CONFIG COREBASE 0x80810000 0x80910000
+    SYStem.CONFIG CTIBASE 0x80820000 0x80920000
+    CORE.ASSIGN 1 2
+)
+else if &NR_CPUS==4
+(
+        ; CVD, quad core
+        sys.cpu cortexA53 
+       SYSTEM.MULTICORE MEMORYACCESSPORT 0 
+       SYSTEM.MULTICORE DEBUGACCESSPORT 1 
+       MULTICORE.COUNT 4 
+       SYSTEM.CONFIG COREBASE 0x80810000 0x80910000 0x80A10000 0x80B10000; 
+       SYStem.CONFIG CTIBASE 0x80820000 0x80920000 0x80A20000 0x80B20000; 
+       CORE.ASSIGN BIGLITTLE 1 2 3 4
+)
+SYStem.Option ENRESET On
+;SYStem.Option ENRESET Off
+;system.mode up
+sys.up
+
+if &DRAM==1
+(
+    ;PER.S C15:0x29 %LONG 0               ;ITCM 0 
+    ;PER.S C15:0x119 %LONG 0x00000010     ;ITCM 0 Region Setting
+    ;PER.S C15:0x29 %LONG 1               ;ITCM 1
+    ;PER.S C15:0x119 %LONG 0x00000010     ;ITCM 1 Region Setting
+
+    ;PER.S C15:0x29 %LONG 0               ;DTCM 0
+    ;PER.S C15:0x019 %LONG 0x00000010     ;DTCM 0 Region Setting
+    ;PER.S C15:0x29 %LONG 1               ;DTCM 1
+    ;PER.S C15:0x019 %LONG 0x00000010     ;DTCM 1 Region Setting
+    
+    ; Set to supervisor mode and disable interrupts
+    ;MOV     r1, #(MODE_SVC | BIT_I | BIT_F)
+    ;MSR     CPSR_c, r1
+    ;R.S CPSR 0xD3
+    
+    ;@ Set to supervisor mode and disable interrupts
+    ;LDR     r0, =0xf000000b @ 1MB
+    ;MCR     p15, 0, r0, c15, c2, 4
+    ;PER.S C15:0x42F %LONG 0xF000000B 
+
+	;data.SET 0xf0028100 %long 0x0
+    
+    ; Disable caches and MMU        
+    ;D.S C15:0x1 %LONG 0
+    
+    data.SET 0xf0007000 %long 0x338B1165
+    data.SET 0xf0007004 %long 0x03015007
+    data.SET 0xf0007010 %long 0x00000022
+    data.SET 0xf000700C %long 0x00000200
+    wait 1.ms
+    
+    data.SET 0xf000700C %long 0x00000000
+    data.SET 0xf000701C %long 0x03300080    
+    data.SET 0xf0007008 %long 0x0000020A  
+    
+    ; // 128 bits DRAM setting => 2 DRAM modules on fpga.
+    data.SET 0xf0007018 %long 0xC0021410
+    ; // 64 bits DRAM setting => 1 DRAM module on fpga.
+    ; data.SET 0xf0007018 %long 0xC0021010
+
+    data.SET 0xf000801C %long 0x1        ;Dram remap
+    data.SET 0xf000C004 %long 0xE2       ;switch uart to transparent mode
+    
+
+	;R.SET R13 0x2000000
+	data.SET 0xf00080fc %long 0x100   ; TCM 256MB
+)
+
+; This is the program name that you want to load
+print "load image..."
+
+;Data.LOAD.Binary .\common_debug_preloader_nor.bin 0xfb000000 /noclear /nosymbol
+;data.load.binary ./bl1.bin 0x3ffe0000 /noclear /nosymbol
+;D.LOAD.binary ../../../../output/mtk_linux/drv_mt5891_64bit_linux/rel/obj/atf/out/build/debug/bl31.bin 0x3ffe0000 /noclear /nosymbol
+;D.LOAD.binary ../../../../sys_build/mtk_linux/drv_mt5891_64bit_linux/debug_obj/tz_secure/mt5891_tz.bin 0x3f035000 /noclear /nosymbol
+;D.LOAD.elf ../../../../sys_build/mtk_linux/drv_mt5891_64bit_linux/debug_obj/tz_secure/mt5891_tz.axf 0x3f035000 /nocode
+;driver build
+;D.LOAD.elf ../../../../sys_build/mtk_linux/drv_mt5891_64bit_linux/rel_obj/atf/out/build/debug/bl31/bl31.elf /nocode /noclear
+;D.LOAD.elf ../../../../sys_build/mtk_linux/drv_mt5891_64bit_linux/rel_obj/tz_secure/mt5891_tz.axf 0x7f035000 /nocode /noclear
+;android, need to modify 0x7d035000 according to dram map
+D.LOAD.elf ../../../../../android/l-pdk/out/mediatek_linux/output/mediatek/mt5891_cn_android_64/rel/obj/atf/out/build/debug/bl31/bl31.elf /nocode /noclear
+;D.LOAD.elf ../../../../../android/l-pdk/out/mediatek_linux/output/mediatek/mt5891_cn_android_64/rel/obj/tz_secure/mt5891_tz.axf 0x7d035000 /nocode /noclear
+;do "breakpts.cmm"
+; do "windowps.cmm"
+
+setup.imaskhll on
+setup.imaskasm on
+; You need to set the path of source code, otherwise you could not
+; see the source when debugging.
+y.spath .
+y.spath.srd X:/ws_weiping.xiao_android_linuxtzz/DTV/DEV_BR/e_IDTV1501_LINUX_1527_Wukong_BR/apollo/target/public/mt53xx_com/tz_secure
+;y.spath.srd ../5891_driver
+;y.spath.srd ../../../../middleware
+;data.list
+;m
+;V %HEX
+;task.config C:\T32\demo\arm\KERNEL\NUCLEUS\nucleus
+;menu.reprogram C:\T32\demo\arm\KERNEL\NUCLEUS\nucleus
+; go
+;R.SET PC 0xfb000000   ;init code start address
+;R.SET PC 0xf011000
+;D.S ZSD:0xF0078038 %LE %Long 0xffe0000
+;r.s x0 0x4000000
+;r.s x1 0x1702
+;r.s x2 0x4000000
+;r.s x3 0x80000
+end

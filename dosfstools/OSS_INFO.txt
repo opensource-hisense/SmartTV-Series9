@@ -1,0 +1,10 @@
+NAME=dosfstools
+VERSION=2.9
+URL=http://daniel-baumann.ch/files/software/dosfstools
+LICENSE=GPLv2
+OWNER=songwen.liao
+SOURCE=oss/source/dosfstools
+MTK_MODIFY=No
+USAGE= bin
+COMMENT= create an MS-DOS file system under Linux 
+INSTALL_PATH=basic

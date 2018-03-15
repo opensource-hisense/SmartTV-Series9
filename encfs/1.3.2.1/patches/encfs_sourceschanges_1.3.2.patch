@@ -1,0 +1,188 @@
+Index: encfs-1.3.2/encfs/BlockFileIO.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/BlockFileIO.cpp	2013-02-04 11:27:56.897385000 +0530
++++ encfs-1.3.2/encfs/BlockFileIO.cpp	2013-02-04 11:28:36.922985000 +0530
+@@ -22,7 +22,7 @@
+ #include <rlog/rlog.h>
+ 
+ #include "i18n.h"
+-
++#include <string.h>
+ template<typename Type>
+ inline Type min( Type A, Type B )
+ {
+Index: encfs-1.3.2/encfs/BlockNameIO.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/BlockNameIO.cpp	2013-02-04 11:27:57.130394000 +0530
++++ encfs-1.3.2/encfs/BlockNameIO.cpp	2013-02-04 11:28:36.924986000 +0530
+@@ -19,7 +19,7 @@
+ 
+ #include "Cipher.h"
+ #include "base64.h"
+-
++#include <string.h>
+ #include <rlog/rlog.h>
+ #include <rlog/Error.h>
+ #include <rlog/RLogChannel.h>
+Index: encfs-1.3.2/encfs/Config.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/Config.cpp	2013-02-04 11:27:57.674278000 +0530
++++ encfs-1.3.2/encfs/Config.cpp	2013-02-04 11:28:36.932985000 +0530
+@@ -23,7 +23,7 @@
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ #include <unistd.h>
+-
++#include <string.h>
+ 
+ using namespace std;
+ using namespace rlog;
+Index: encfs-1.3.2/encfs/ConfigVar.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/ConfigVar.cpp	2013-02-04 11:27:57.727283000 +0530
++++ encfs-1.3.2/encfs/ConfigVar.cpp	2013-02-04 11:28:36.934985000 +0530
+@@ -17,7 +17,7 @@
+ 
+ #include "ConfigVar.h"
+ #include <rlog/rlog.h>
+-
++#include <string.h>
+ using namespace rlog;
+ 
+ #ifndef MIN
+Index: encfs-1.3.2/encfs/DirNode.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/DirNode.cpp	2013-02-04 11:27:57.773276000 +0530
++++ encfs-1.3.2/encfs/DirNode.cpp	2013-02-04 11:28:36.936987000 +0530
+@@ -19,6 +19,7 @@
+ 
+ #include "DirNode.h"
+ #include "FileUtils.h"
++#include <string.h>
+ 
+ #include <sys/stat.h>
+ #include <sys/types.h>
+Index: encfs/encfs-1.3.2/encfs/FileNode.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/FileNode.cpp	2013-02-04 11:27:57.990276000 +0530
++++ encfs-1.3.2/encfs/FileNode.cpp	2013-02-04 11:28:36.950995000 +0530
+@@ -24,6 +24,7 @@
+ #include <sys/types.h>
+ #include <fcntl.h>
+ #include <unistd.h>
++#include <string.h>
+ #ifdef linux
+ #include <sys/fsuid.h>
+ #endif
+Index: encfs/encfs-1.3.2/encfs/FileUtils.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/FileUtils.cpp	2013-02-04 11:27:58.041276000 +0530
++++ encfs-1.3.2/encfs/FileUtils.cpp	2013-02-04 11:28:36.953986000 +0530
+@@ -23,6 +23,7 @@
+ 
+ #include "encfs.h"
+ #include "config.h"
++#include <string.h>
+ 
+ #include "readpassphrase.h"
+ #include "autosprintf.h"
+Index: encfs/encfs-1.3.2/encfs/MACFileIO.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/MACFileIO.cpp	2013-02-04 11:27:58.236274000 +0530
++++ encfs-1.3.2/encfs/MACFileIO.cpp	2013-02-04 11:28:36.963986000 +0530
+@@ -22,7 +22,7 @@
+ #include <rlog/rlog.h>
+ #include <rlog/Error.h>
+ #include <rlog/RLogChannel.h>
+-
++#include <string.h>
+ #include "i18n.h"
+ 
+ using namespace rlog;
+Index: encfs/encfs-1.3.2/encfs/MACFileIOCompat.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/MACFileIOCompat.cpp	2013-02-04 11:27:58.179276000 +0530
++++ encfs-1.3.2/encfs/MACFileIOCompat.cpp	2013-02-04 11:28:36.961987000 +0530
+@@ -21,7 +21,7 @@
+ 
+ #include <rlog/rlog.h>
+ #include <rlog/Error.h>
+-
++#include <string.h>
+ #include "i18n.h"
+ 
+ using namespace rlog;
+Index: encfs/encfs-1.3.2/encfs/NameIO.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/NameIO.cpp	2013-02-04 11:27:58.550168000 +0530
++++ encfs-1.3.2/encfs/NameIO.cpp	2013-02-04 11:28:36.969986000 +0530
+@@ -17,7 +17,7 @@
+ 
+ #include "NameIO.h"
+ #include "config.h"
+-
++#include <string.h>
+ #include <rlog/rlog.h>
+ #include <rlog/Error.h>
+ 
+@@ -178,7 +178,7 @@
+ 	} else
+ 	{
+ 	    bool isDotFile = (*path == '.');
+-	    char *next = strchr( path, '/' );
++	    char *next = (char *)strchr( path, '/' );
+ 	    int len = next ? next - path : strlen( path );
+ 
+ 	    // at this point we know that len > 0
+Index: encfs/encfs-1.3.2/encfs/NullCipher.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/NullCipher.cpp	2013-02-04 11:27:58.619165000 +0530
++++ encfs-1.3.2/encfs/NullCipher.cpp	2013-02-04 11:28:36.971986000 +0530
+@@ -19,7 +19,7 @@
+ 
+ #include "Range.h"
+ #include "Interface.h"
+-
++#include <string.h>
+ #include <rlog/rlog.h>
+ 
+ using namespace std;
+Index: encfs/encfs-1.3.2/encfs/NullNameIO.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/NullNameIO.cpp	2013-02-04 11:27:58.694171000 +0530
++++ encfs-1.3.2/encfs/NullNameIO.cpp	2013-02-04 11:28:36.972990000 +0530
+@@ -19,7 +19,7 @@
+ 
+ #include "Cipher.h"
+ #include "base64.h"
+-
++#include <string.h>
+ using namespace rel;
+ 
+ static Ptr<NameIO> NewNNIO( const Interface &, 
+Index: encfs/encfs-1.3.2/encfs/RawFileIO.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/RawFileIO.cpp	2013-02-04 11:27:58.998164000 +0530
++++ encfs-1.3.2/encfs/RawFileIO.cpp	2013-02-04 11:28:36.979992000 +0530
+@@ -29,7 +29,7 @@
+ #include <fcntl.h>
+ 
+ #include <errno.h>
+-
++#include <string.h>
+ using namespace std;
+ 
+ static rel::Interface RawFileIO_iface("FileIO/Raw", 1, 0, 0);
+Index: encfs/encfs-1.3.2/encfs/StreamNameIO.cpp
+===================================================================
+--- encfs-1.3.2.orig/encfs/StreamNameIO.cpp	2013-02-04 11:27:59.496116000 +0530
++++ encfs-1.3.2/encfs/StreamNameIO.cpp	2013-02-04 11:28:36.985991000 +0530
+@@ -22,7 +22,7 @@
+ 
+ #include <rlog/rlog.h>
+ #include <rlog/Error.h>
+-
++#include <string.h>
+ #include "i18n.h"
+ 
+ using namespace rel;

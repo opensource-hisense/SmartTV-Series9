@@ -1,0 +1,60 @@
+
+ifndef VM_LINUX_ROOT
+VM_LINUX_ROOT := $(word 1, $(subst /vm_linux/,/vm_linux /, $(shell pwd)))
+endif
+
+ifeq ($(COMPANY), Amtran)
+EXTRA_OPTION = -DUSE_VIZIO_NTP_SERVER
+endif
+
+ifeq ($(COMPANY), skyworth)
+EXTRA_OPTION = -DUSE_ASIA_NTP_SERVER
+endif
+
+ifeq ($(COMPANY), Hisense)
+EXTRA_OPTION = -DUSE_ASIA_NTP_SERVER
+endif
+
+ifeq ($(IPV6_SUPPORT), true)
+EXTRA_OPTION = -DIPV6
+endif
+
+THIRDPARTY_ROOT ?= $(word 1, $(subst /third_party/,/third_party /, $(shell pwd)))
+THIRDPARTY_SRC_ROOT ?= $(THIRDPARTY_ROOT)/source
+THIRDPARTY_LIB_ROOT ?= $(THIRDPARTY_ROOT)/library
+include $(THIRDPARTY_SRC_ROOT)/mak/target.mak
+
+ifeq ($(TOOL_CHAIN), 4.2.1)
+
+else# 4.4.2
+
+endif
+
+all:
+	$(CC) -O2 sntp.c $(EXTRA_OPTION) -o sntp
+	@echo 'setup NTP company=$(COMPANY)'
+#	arm11_mtk_le-gcc -O2 sntp.c -o sntp
+
+install: sntp
+	@echo 'Install ntp...'
+	@echo 'rm -rf $(VM_LINUX_ROOT)/third_party/library/gnuarm-$(TOOL_CHAIN)$(VFP_SUFFIX)/ntp'
+		@rm -rf $(VM_LINUX_ROOT)/third_party/library/gnuarm-$(TOOL_CHAIN)$(VFP_SUFFIX)/ntp
+	@echo 'mkdir -p $(VM_LINUX_ROOT)/third_party/library/gnuarm-$(TOOL_CHAIN)$(VFP_SUFFIX)/ntp'
+		@mkdir -p $(VM_LINUX_ROOT)/third_party/library/gnuarm-$(TOOL_CHAIN)$(VFP_SUFFIX)/ntp
+	@echo 'cp -r $(VM_LINUX_ROOT)/third_party/source/ntp/sntp $(VM_LINUX_ROOT)/third_party/library/gnuarm-$(TOOL_CHAIN)$(VFP_SUFFIX)/ntp'
+	@cp -r $(VM_LINUX_ROOT)/third_party/source/ntp/sntp $(VM_LINUX_ROOT)/third_party/library/gnuarm-$(TOOL_CHAIN)$(VFP_SUFFIX)/ntp
+
+clean:
+	rm -rf sntp
+
+help:
+	@echo build test command :
+	@echo 'armq make TOOL_CHAIN=4.2.1 |tee log4.2.1'
+	@echo 'armq make TOOL_CHAIN=4.4.2 |tee log4.4.2'
+	@echo 'armq make TOOL_CHAIN=4.4.2_vfp |tee log4.4.2_vfp'
+	@echo 'armq make TOOL_CHAIN=4.2.1 install|tee log4.2.1'
+	@echo 'armq make TOOL_CHAIN=4.4.2 install|tee log4.4.2'
+	@echo 'armq make TOOL_CHAIN=4.4.2_vfp install|tee log4.4.2_vfp'
+	@echo 'armq make clean'
+
+

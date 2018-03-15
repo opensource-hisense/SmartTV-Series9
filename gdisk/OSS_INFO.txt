@@ -1,0 +1,11 @@
+NAME=gdisk
+VERSION=0.8.1
+URL=http://www.rodsbooks.com/
+LICENSE=GNU GENERAL PUBLIC LICENSE Version 2
+OWNER=songwen.liao
+SOURCE=oss/source/gdisk
+MTK_MODIFY=No
+USAGE=Dynamic Link
+COMMENT=c runtime library
+RELEASE_SOURCE=Yes
+INSTALL_PATH=basic
