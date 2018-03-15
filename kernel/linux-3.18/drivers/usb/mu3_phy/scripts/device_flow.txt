@@ -1,0 +1,46 @@
+1.	init
+
+u3i
+
+u3d (phase scan)
+
+u3w 0xb [phase]
+
+eyeinit
+
+
+
+2.	link
+
+link (check if U0 is entered)
+
+
+
+3.	eyescan
+
+eyescan 0 0 127 127 1 1 200 1 1 0
+
+
+
+4.	dump memory
+
+pwErrCnt0.bin
+
+pwErrCnt1.bin
+
+
+
+5.	run convert.pl
+
+input: test_eyescan.bin
+
+output: eye.txt
+
+
+
+6.	open Eye_Scan_20120615_v0.1.xlsm
+
+    import eye.txt
+
+	get eyescan diagram in the specified sheet
+

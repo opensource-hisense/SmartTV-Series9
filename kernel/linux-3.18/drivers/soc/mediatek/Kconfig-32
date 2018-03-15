@@ -1,0 +1,21 @@
+#
+# MediaTek TV SoC drivers
+#
+config SOC_MEDIATEK_TV
+	bool
+	default y if !ARM64
+	help
+	  Mediatek TV SoC support.
+
+config NATIVE_CB2
+	bool "callback mechanism in native"
+	
+config SOC_MEDIATEK_MT53XX
+	bool "SoC bus device for the ARM Integrator platform core modules"
+	depends on ARM64
+
+	help
+	  Include support for the SoC bus on the ARM Integrator platform
+	  core modules providing some sysfs information about the ASIC
+	  variant.
+

@@ -1,0 +1,28 @@
+
+config USB_MU3H
+	tristate "MU3H (MTK USB3.0 Host) Controller"
+	depends on USB
+
+	  
+choice 
+	depends on USB_MU3H
+	bool "MTK USB3.0 Host Drivers"
+	default USB_MU3H_DRV
+	
+config USB_MU3H_DRV
+	bool "MU3H Driver"
+config USB_MU3H_TEST_DRV
+	bool "MU3H Test Driver"
+	
+endchoice
+
+config XHCI_DEV_NOTE
+    tristate "xHCI HCD with device notification function (patch to usb core)"
+    depends on USB_MU3H
+config XHCI_PM
+    tristate "xHCI HCD with u2/u3 LPM function (patch to usb core)"
+    depends on USB_MU3H
+config USB_XHCI_DEBUGGING
+    bool "Debugging for xHCI host controller"
+    depends on USB_MU3H
+

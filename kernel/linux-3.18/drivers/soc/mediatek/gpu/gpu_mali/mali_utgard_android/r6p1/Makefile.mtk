@@ -1,0 +1,61 @@
+export ARCH=arm64
+export PLATFORM_VERSION ?= 4.4
+export KERNELDIR=$(KERNEL_OBJ_ROOT)/$(KERNEL_VER)/$(KERNEL_CONFIG)
+export TARGET_DEVICE=$(IC_SETTING)
+export BUILD=release
+export KDIR=$(KERNEL_OBJ_ROOT)/$(KERNEL_VER)/$(KERNEL_CONFIG)
+export USING_MMU=1 
+#export MALI_PLATFORM=mt53xx  
+#export TARGET_PLATFORM=mt53xx
+export TARGET_PLATFORM=mt53xx
+#export CONFIG=mt53xx
+
+ifndef CUSTOMER
+$(error CUSTOMER is not defined)
+endif
+
+ifndef MODEL_NAME
+$(error MODEL_NAME is not defined)
+endif
+
+include $(LINUX_ROOT)/linux_mts/mak/android/android_toolchain.mak
+
+ifdef ANDROID_TOP
+export ANDROID_ROOT = $(ANDROID_TOP)
+else
+export ANDROID_ROOT=$(LINUX_ROOT)/android/$(ANDROID_VERSION)
+endif
+
+export CROSS_COMPILE ?= /mtkoss/gnuarm/gcc-aarch64-linux-gnu-4.9.3-ubuntu/x86_64/bin/aarch64-linux-gnu-
+export JOBS ?= 10
+export MALI_VER         ?= mali400-r6p101rel0
+
+CP      ?= cp
+CP_FLAG ?= -a
+
+DEVICE_STRING = device/$(CUSTOMER)/$(MODEL_NAME)
+
+export OUT_DIR ?= $(ANDROID_ROOT)/out
+export TOOLCHAIN := $(OUT_DIR)/target/product/$(TARGET_DEVICE)/obj
+export MALI_OBJ := $(OBJ_ROOT)/third_party/source/Arm_Mali
+export MALI_OBJ_ROOT := $(MALI_OBJ)/Generic/$(MALI_VER)/src/kernel/mali/
+export MALI_KO_ROOT = $(ANDROID_ROOT)/$(DEVICE_STRING)/DTV_OUT
+export MALI_KERNEL_ROOT = $(ANDROID_ROOT)/$(DEVICE_STRING)/../$(IC_SETTING)-kernel
+MALI_DMA_BUF_MAP_ON_ATTACH=1
+
+BUILDIC=$(subst mt,,${IC_SETTING})
+BUILDDIR = eurasiacon/build/linux2/mt53_android_$(BUILDIC)
+
+$(warning zijie_check= $(MALI_OBJ_ROOT)  $(MALI_KO_ROOT))
+
+
+all:
+	$(MAKE) -j $(JOBS) -C mali 
+	$(CP) $(CP_FLAG) $(MALI_OBJ_ROOT)/mali.ko $(MALI_KO_ROOT)
+	$(CP) $(CP_FLAG) $(MALI_OBJ_ROOT)/mali.ko $(MALI_KERNEL_ROOT)
+
+clean:
+	$(RM) $(RM_FLAG) -r $(MALI_OBJ)
+	$(RM) $(RM_FLAG) $(MALI_KO_ROOT)/mali.ko
+
+

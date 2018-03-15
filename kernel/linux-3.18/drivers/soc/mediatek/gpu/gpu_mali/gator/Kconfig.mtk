@@ -1,0 +1,4 @@
+config GATOR
+	tristate "Gator module for ARM's Streamline Performance Analyzer"
+	help
+	  Gator module for ARM's Streamline Performance Analyzer

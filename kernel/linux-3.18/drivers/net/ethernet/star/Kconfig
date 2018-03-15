@@ -1,0 +1,77 @@
+#
+# MTK network device configuration
+#
+
+config NET_VENDOR_MTK
+	bool "MTK devices"
+	default y
+	depends on ETHERNET
+	---help---
+	  If you have a network (Ethernet) card belonging to this class, say Y
+	  and read the Ethernet-HOWTO, available from
+	  <http://www.tldp.org/docs.html#howto>.
+
+	  Note that the answer to this question doesn't directly affect the
+	  kernel: saying N will just cause the configurator to skip all
+	  the questions about Realtek devices. If you say Y, you will be asked for
+	  your specific card in the following questions.
+
+if NET_VENDOR_MTK
+
+config MAC5863_MII
+	tristate "MT5863 Internal MAC support"
+	select MII
+	depends on ETHERNET
+	help
+	  This is a driver for MT5863's internal Ethernet mac,
+	  Say Y if you want it compiled into the kernel.
+
+	  This driver is also available as a module ( = code which can be
+	  inserted in and removed from the running kernel whenever you want).
+	  The module will be called mmac.  If you want to compile it as a
+	  module, say M here and read <file:Documentation/modules.txt> as well
+	  as <file:Documentation/networking/net-modules.txt>.
+
+config MAC5865_MII
+    tristate "MT5865 Internal MAC support"
+    select MII
+    depends on ETHERNET
+    help
+      This is a driver for MT5865's internal Ethernet mac,
+      Say Y if you want it compiled into the kernel.
+
+      This driver is also available as a module ( = code which can be
+      inserted in and removed from the running kernel whenever you want).
+      The module will be called mmac.  If you want to compile it as a
+      module, say M here and read <file:Documentation/modules.txt> as well
+      as <file:Documentation/networking/net-modules.txt>.
+
+config MAC5886_MII
+	tristate "MT5886 Internal MAC support"
+	select MII
+	depends on ETHERNET
+	help
+	  This is a driver for MT5886's internal Ethernet mac,
+	  Say Y if you want it compiled into the kernel.
+
+	  This driver is also available as a module ( = code which can be
+	  inserted in and removed from the running kernel whenever you want).
+	  The module will be called mmac.  If you want to compile it as a
+	  module, say M here and read <file:Documentation/modules.txt> as well
+	  as <file:Documentation/networking/net-modules.txt>.
+
+config MAC5893_MII
+	tristate "MT5893 Internal MAC support"
+	select MII
+	depends on ETHERNET
+	help
+	  This is a driver for MT5893's internal Ethernet mac,
+	  Say Y if you want it compiled into the kernel.
+
+	  This driver is also available as a module ( = code which can be
+	  inserted in and removed from the running kernel whenever you want).
+	  The module will be called mmac.  If you want to compile it as a
+	  module, say M here and read <file:Documentation/modules.txt> as well
+	  as <file:Documentation/networking/net-modules.txt>.
+endif # NET_VENDOR_MTK
+

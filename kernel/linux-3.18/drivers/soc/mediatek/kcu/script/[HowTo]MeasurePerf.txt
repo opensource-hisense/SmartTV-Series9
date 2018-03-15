@@ -1,0 +1,8 @@
+1.build code with FTRACE_SUPPORT=true to enable kernel trace system
+2.after bootup,run setup_trace.sh to enable trace event
+3.input "echo 0 >/sys/kernel/debug/tracing/tracing_on" to stop the trace
+4.get the trace log to usb
+    cat trace_pipe >/mnt/usb/sda1/trace_kcu.log
+5.parse the trace log and generate m file on PC
+    parse_kcu_trace_file.pl trace_kcu.log
+6.generate the graphic by octave(input the *.m file output in step 5)

@@ -1,0 +1,10 @@
+config MEDIATEK_TV_SOLUTION
+	bool "MediaTek TV Properitary Configuration"
+	#default y if !ARM64
+	help
+	  Check this to enable MediaTek properity configuration.
+config GPUFREQ_MT53xx
+	tristate "Mediatek mt53xx GPU freq"
+	help
+	  This driver supports MT53xx GPU Freq.
+

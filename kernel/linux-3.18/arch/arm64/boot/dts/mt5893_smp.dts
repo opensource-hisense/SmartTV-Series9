@@ -1,0 +1,375 @@
+/*
+ * ARM Ltd.
+ *
+ * ARMv8 Foundation model DTS
+ */
+
+/dts-v1/;
+
+/memreserve/ 0x00000000 0x00010000;
+
+/ {
+	model = "MT5893";
+	compatible = "arm,foundation-aarch64", "arm,vexpress";
+	interrupt-parent = <&gic>;
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	chosen {
+		bootargs = "root=/dev/mmcblk0p8 rootwait rootfstype=squashfs rw console=ttyMT0,115200n1 debug mtdparts=mt53xx-emmc:2M(uboot),2M(uboot_env),256k(part_02),256k(part_03),6M(kernelA),6M(kernelB),75M(rootfsA),75M(rootfsB),256k(basic),16M(perm),256k(3rd_ro),192M(rw_area),256k(reserved),256k(channelA),256k(channelB),256k(pq),256k(aq),256k(logo),256k(acfg_descr),3M(adsp),256k(adsp),256k(part_21) usbportusing=1,1,0,1 usbpwrgpio=42:1,43:1,48:1,210:1 usbocgpio=404:0,404:0,405:0,405:0 usbhubrstgpio=-1:-1 msdcgpio=76,-1,-1,176,-1,-1";
+	};
+
+	soc {
+		compatible = "simple-bus";
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+
+		bim@f0000000 {
+			compatible = "Mediatek, TVBIM";
+			reg = <0x10000000 0x300000>;
+		};
+		pdwnc@f0028000 {
+			compatible = "Mediatek, PDWNC";
+			reg = <0x10028000 0x1000>;
+		};
+		ckgen@f000d000 {
+			compatible = "Mediatek, CKGEN";
+			reg = <0x1000d000 0x1000>;
+		};
+		rs232@f000c000 {
+		compatible = "Mediatek, RS232";
+		reg = <0x1000c000 0x1000>,
+			  <0x10028000 0x1000>,
+			  <0x1000d000 0x1000>,
+			  <0x10008000 0x1000>;
+		};
+		starmac@10032000 {
+		compatible = "Mediatek, MAC";
+		reg = <0x10032000 0x140>,
+			  <0x1000d400 0x140>,
+			  <0x1000d000 0x140>,
+			  <0x10028000 0x140>,
+			  <0x10008000 0x1000>;
+		};
+		usb20@f0059800 {
+		compatible = "Mediatek, TVUSB20";
+		reg = <0x10059800 0x400>,
+			 <0x10050000 0x4000>,
+		  	 <0x10062400 0x10>,
+			 <0x10028000 0x100>,
+			 <0x10059f00 0x20>,
+			 <0x10053f00 0x20>,
+			 <0x100D0800 0xFC>,
+			 <0x10008600 0xDF>;
+		};
+		ssusb@f0070000 {
+		compatible = "Mediatek, TVSSUSB";
+		reg = <0x1000D5AC 0x10>,
+			 <0x100D0000 0x100>,
+			 <0x100D0100 0x100>,
+			 <0x100D8700 0xCC>,
+		  	 <0x100D0800 0xFC>,
+		  	 <0x100D0900 0x100>,
+		  	 <0x100D0A00 0x100>,
+		  	 <0x100D0B00 0x100>,
+		  	 <0x100D0C00 0x100>,
+		  	 <0x100D4000 0x9F4>,
+		  	 <0x100D6400 0x148>,
+		  	 <0x100D6600 0xDC>,
+		  	 <0x100D7400 0x60>,
+		  	 <0x100D4000 0x10000>;
+		};
+		u3phy1: ssusb1-phy@100C4000 {
+		compatible = "mediatek,mt53xx-u3phy";
+		reg = <0x100C0000 0x0700>,
+          <0x100C0800 0x0FC>;
+          #phy-cells = <1>;
+          /*status = "okay";*/
+        };
+    mtu3@100C5000 {
+    compatible = "mediatek,mt53xx-mtu3";
+    reg = <0x100C5000 0x2800>,
+          <0x100C8700 0x100>;
+    reg-names = "mac", "ippc";
+		interrupts = <0 202 4>;
+		      phys = <&u3phy1 0>;
+          /*status = "okay";*/
+        };
+		ssusb1@100C0000 {
+    compatible = "mediatek,mt53xx-xhci";
+    reg = <0x100C4000 0x2800>,
+          <0x100C8700 0xCC>;
+		interrupts = <0 203 4>;
+		      phys = <&u3phy1 0>;
+          /*status = "okay";*/
+        };
+	u3phy2: ssusb2-phy@100D4000 {
+		compatible = "mediatek,mt53xx-u3phy";
+		reg = <0x100D0000 0x0700>,
+          <0x100D0800 0x0FC>;
+           #phy-cells = <1>;
+         /*status = "okay";*/
+        };
+		ssusb2@100D0000 {
+    compatible = "mediatek,mt53xx-xhci";
+    reg = <0x100D4000 0x2800>,
+          <0x100D8700 0xCC>,
+          <0x10028000 0x100>;
+		interrupts = <0 126 4>;
+		phys = <&u3phy2 0>;
+                /*status = "okay";*/
+        };
+		nandreg1@f0029000 {
+			compatible = "Mediatek, NAND";
+			reg = <0x10029000 0x1000>,
+				  <0x1000d000 0x1000>,
+				  <0x10008600 0xA00>;
+		};
+		iommu:iommu@10068000 {
+			compatible = "mediatek, mt5891-iommu";
+			reg = <0x10068000 0x1000>;
+			#iommu-cells = <1>;
+		};
+		gfx:gfx@10068000 {
+			compatible = "mediatek, mt5891-gfx";
+			reg = <0x10068000 0x1000>;
+			iommus = <&iommu 1>;
+		};
+		gcpu@10016000 {
+			compatible = "Mediatek, GCPU";
+			reg = <0x10016000 0x1000>;
+			iommus = <&iommu 2>;
+		};
+		MSDC0@0xF006D000 {
+			/* eMMC */
+			compatible = "Mediatek,MSDC0";
+			reg = <0x1006D000 0x1000>;	/* MSDC0_BASE */
+			interrupts = <0 140 4>;
+			id = <0>;
+			sclk-reg = <0x1000D380>;
+			hclk-reg = <0x1000D384>;
+			/*status = "okay";*/
+		};
+
+		MSDC1@0xF0012000 {
+			/* SDMMC */
+			compatible = "Mediatek,MSDC1";
+			reg = <0x10012000 0x1000>;	/* MSDC1_BASE */
+			interrupts = <0 100 4>;
+			id = <1>;
+			sclk-reg = <0x1000D32C>;
+			hclk-reg = <0x1000D3A0>;
+			/*status = "okay";*/
+		};
+		i2c0@0x10029000
+		{
+			compatible = "Mediatek,I2C";
+			reg = <0x10029000 0x1000>;
+			interrupts = <0 73 4>;/*73+32=105*/
+			chan = <0>;
+		};
+		i2c1@0x10029000
+		{
+			compatible = "Mediatek,I2C";
+			reg = <0x10029000 0x1000>;
+			interrupts = <0 73 4>;
+			chan = <1>;
+		};
+		i2c2@0x10029000
+		{
+			compatible = "Mediatek,I2C";
+			reg = <0x10029000 0x1000>;
+			interrupts = <0 73 4>;
+			chan = <2>;
+		};
+		i2c3@0x10028000
+		{
+			compatible = "Mediatek,I2C";
+			reg = <0x10028000 0x1000>;
+			interrupts = <0 72 4>;
+			chan = <3>;
+		};
+		i2c4@0x10028000
+		{
+			compatible = "Mediatek,I2C";
+			reg = <0x10028000 0x1000>;
+			interrupts = <0 72 4>;
+			chan = <4>;
+		};
+        m4u1:m4u@0x10073000{
+            compatible = "Mediatek,M4U";
+            reg = <0x10073000 0x1000>;
+            interrupts = <0 226 4>;
+            #iommu-cells = <1>;
+        };
+        m4u2:m4u@0x10074000{
+            compatible = "Mediatek,M4U";
+            reg = <0x10074000 0x1000>;
+            interrupts = <0 228 4>;
+            #iommu-cells = <1>;
+        };        
+        m4uc@m4u1{
+            compatible = "Mediatek,M4U_Client";
+            iommus = <&m4u1 0>,<&m4u1 7>;
+        };
+        m4uc@m4u2{
+            compatible = "Mediatek,M4U_Client";
+            iommus = <&m4u2 8>,<&m4u2 12>;
+        };
+	};
+
+	psci {
+		compatible = "arm,psci-0.2";
+		method = "smc";
+	};
+
+	ptpod@0x10066000 {
+		/* ptpod */
+		compatible = "mediatek,mt5893-ptp_od";
+		reg = <0 0x10066000 0 0x800>,	/* PTPOD_BASE */
+		      <0 0x10008600 0 0x100>;	
+		interrupts = <0 169 4>;
+	};
+	mt53xxregulator: mt53xxregulator {
+		compatible = "mediatek,mt53xx-regulator";
+		mt53xx_vcpu_reg: buck_vcpu {
+			regulator-name = "vcpu";
+			regulator-min-microvolt = < 700000>;
+			regulator-max-microvolt = <1350000>;
+			regulator-ramp-delay = <12500>;
+			regulator-always-on;
+			regulator-boot-on;
+		};
+		mt53xx_vgpu_reg: buck_vgpu {
+			regulator-name = "vgpu";
+			regulator-min-microvolt = < 700000>;
+			regulator-max-microvolt = <1350000>;
+			regulator-ramp-delay = <12500>;
+			regulator-always-on;
+			regulator-boot-on;
+		};
+	};
+
+
+	cpus {
+		#address-cells = <2>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,armv8";
+			reg = <0x0 0x0>;
+			enable-method = "psci";
+			operating-points = <&cpufreq_opp>;
+            clock-latency = <100000>;
+		};
+        cpu@1 {
+            device_type = "cpu";
+            compatible = "arm,armv8";
+            reg = <0x0 0x1>;
+            enable-method = "psci";
+            clock-latency = <100000>;
+        };
+        cpu@2 {
+            device_type = "cpu";
+            compatible = "arm,armv8";
+            reg = <0x0 0x2>;
+            enable-method = "psci";
+            clock-latency = <100000>;
+        };
+        cpu@3 {
+            device_type = "cpu";
+            compatible = "arm,armv8";
+            reg = <0x0 0x3>;
+            enable-method = "psci";
+            clock-latency = <100000>;
+        };
+		system-suspend {
+			compatible = "arm,system-suspend";
+			entry-method = "arm,psci";
+			arm,psci-suspend-param = <0x1010000>;
+        };
+	};
+
+    cpufreq_opp: cpufreq@160000 {
+        compatible = "mediatek,mt53xx-cpufreq";
+        operating-points = <
+                /* KHz    uV */
+                1500000 1125000
+                1296000 1080000
+                1032000 1000000
+        >;
+    };
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0 0x40000000 0 0x10000000>;
+	};
+
+        /*
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		reserve-memory-ccci_md1 {
+			compatible = "reserve-memory-ccci_md1";
+			no-map;
+			size = <0 0x1000>;
+			alignment = <0 0x1000>;
+			alloc-ranges = <0 0x00000000 0 0x01000000>;
+		};
+	};
+        */
+
+    gic: interrupt-controller@0c010000 {
+        compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
+        #interrupt-cells = <3>;
+        #address-cells = <0>;
+        interrupt-controller;
+        reg = <0x0 0x0c010000 0 0x1000>,
+              <0x0 0x0c020000 0 0x1000>,
+              <0x0 0x0c030000 0 0x2000>,
+              <0x0 0x0c040000 0 0x2000>;
+        interrupts = <1 9 0xf04>;
+    };
+
+    system_timer {
+        compatible = "mediatek,mt53xx-system-timer";
+        reg = <0 0x10008000 0 0x1000>;
+        interrupt-parent = <&gic>;
+        interrupts = <0 75 4>; /* 75 + 32 = 107, 107 - 104 = 3 */
+        clock-frequency = <24000000>;
+    };
+
+	timer {
+		compatible = "arm,armv8-timer";
+		interrupts = <1 13 0xff01>,
+			     <1 14 0xff01>;
+		clock-frequency = <12000000>;
+	};
+
+	pmu {
+		compatible = "arm,armv8-pmuv3";
+		interrupts = <0 377 4>,
+			     <0 378 4>,
+			     <0 379 4>,
+			     <0 380 4>;
+	};
+
+    mali@13040000 {
+        compatible = "arm,malit860", "arm,mali-t86x", "arm,malit8xx", "arm,mali-midgard";
+        reg = <0 0x13040000 0 0x4000>;
+        interrupt-parent = <&gic>;
+        interrupts = <0 223 4>, <0 224 4>, <0 225 4>;
+        interrupt-names = "JOB", "MMU", "GPU";
+    };
+
+    mtgpufreq {
+        compatible = "mediatek,mt5893-gpufreq";
+        reg-vgpu-supply = <&mt53xx_vgpu_reg>;
+    };
+};
+
+/include/ "trusty.dtsi"

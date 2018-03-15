@@ -1,0 +1,14 @@
+menu "SOC (System On Chip) specific Drivers"
+
+source "drivers/soc/qcom/Kconfig"
+source "drivers/soc/ti/Kconfig"
+source "drivers/soc/versatile/Kconfig"
+if ARM64
+source "drivers/soc/mediatek/Kconfig"
+endif
+if !ARM64
+source "drivers/soc/mediatek/Kconfig-32"
+endif
+source "drivers/soc/mediatek/gpu/gpu_mali/gator/Kconfig.mtk"
+
+endmenu

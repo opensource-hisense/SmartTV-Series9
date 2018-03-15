@@ -1,0 +1,3 @@
+export DDK_DIR=/codebase/mtksfs01_node10_lif1/dtv_git_adam_dot_yang_git_views_sc_dtv29027/apollo/linux_core/kernel/linux-3.18/drivers/soc/mediatek/gpu/gpu_mali/mali_midgard_linux/r7p0/drivers
+KDIR=/codebase/mtksfs01_node10_lif1/dtv_git_adam_dot_yang_git_views_sc_dtv29027/android/n-base/out/mediatek_linux/output/mediatek/mt5886_us/rel/obj/kernel/linux_core/kernel/linux-3.18/mt5886_android_smp_mod_defconfig
+GATOR_WITH_MALI_SUPPORT=MALI_MIDGARD  make -C ${KDIR} M=`pwd` ARCH=arm CROSS_COMPILE=/mtkoss/gnuarm/neon_4.8.2_2.6.35_cortex-a9-ubuntu/i686/bin/armv7a-mediatek482_001_neon-linux-gnueabi- modules V=1 2>&1 | tee make.log
