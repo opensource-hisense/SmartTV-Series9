@@ -34,7 +34,7 @@
         }
     ],
     "dependencies": {
-        "ejs": "~2.3",
+        "ejs": "~3.0",
         "esp": "~4.6",
         "esp-html-mvc": "~4.6",
         "esp-legacy-mvc": "~4.6",
